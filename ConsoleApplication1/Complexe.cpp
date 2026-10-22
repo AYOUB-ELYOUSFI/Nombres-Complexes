@@ -116,12 +116,11 @@ Complexe Complexe::operator*=(Complexe c)
 {  /*
 	this->re = (this->re * c.re) - (this->img * c.img);
 	this->img = (this->re * c.img) + (this->img * c.re);  */  
-	// on utilise un objet te,poraire pour utiliser l'objet courqnt sans le modifier
+	// on utilise un double te,poraire pour utiliser l'objet courqnt sans le modifier
 
-	Complexe* res = new Complexe(0.0, 0.0);
-	res->re = (this->re * c.re) - (this->img * c.img);
+	double temp = (this->re * c.re) - (this->img * c.img);
 	this->img = (this->re * c.img) + (this->img * c.re);
-	this->re = res->re;
+	this->re = temp;
 	return *this;
 }
 
@@ -129,10 +128,10 @@ Complexe Complexe::operator*=(double a )
 {
 	/*this->re = (this->re * a) - (this->img * 0.0);
 	this->img = (this->re * 0.0) + (this->img * a); */
-	Complexe* res = new Complexe(0.0, 0.0);
-	res->re = (this->re * a) - (this->img * 0.0);
+	
+	double temp = (this->re * a) - (this->img * 0.0);
 	this->img = (this->re * 0.0) + (this->img * a);
-	this->re = res->re;
+	this->re = temp;
 	return *this;
 }
 
@@ -140,10 +139,10 @@ Complexe Complexe::operator/=(Complexe c)
 {
 	/*this->re = (this->re * c.re + this->img * c.img) / ((c.re * c.re) + (c.img * c.img));
 	this->img = (this->img * c.re - this->re * c.img) / ((c.re * c.re) + (c.img * c.img)); */
-	Complexe* res = new Complexe(0.0, 0.0);
-	res->re = (this->re * c.re + this->img * c.img) / ((c.re * c.re) + (c.img * c.img));
+	
+	double temp = (this->re * c.re + this->img * c.img) / ((c.re * c.re) + (c.img * c.img));
 	this->img = (this->img * c.re - this->re * c.img) / ((c.re * c.re) + (c.img * c.img));
-	this->re = res->re;
+	this->re = temp;
 	return *this;
 }
 
@@ -152,10 +151,10 @@ Complexe Complexe::operator/=(double a)
 	if (a != 0) {
 		 /* this->re = (this->re * a + this->img * 0.0) / ((a * a) + (0.0 * 0.0));
 		this->img = (this->img * a - this->re * 0.0) / ((a * a) + (0.0 * 0.0)); */
-		Complexe* res = new Complexe(0.0, 0.0);
-		res->re = (this->re * a + this->img * 0.0) / ((a * a) + (0.0 * 0.0));
+		
+		double temp = (this->re * a + this->img * 0.0) / ((a * a) + (0.0 * 0.0));
 		this->img = (this->img * a - this->re * 0.0) / ((a * a) + (0.0 * 0.0));
-		this->re = res->re;
+		this->re = temp;
 		return *this;
 	}
 	else
@@ -210,9 +209,9 @@ int Complexe::operator!=(Complexe c)const
 int Complexe::operator!=(double a) const
 {
 	if (this->re == a && this->img == 0)
-		return 1;
-	else
 		return 0;
+	else
+		return 1;
 }
 
 
